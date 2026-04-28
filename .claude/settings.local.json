@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__ClaudeTalkToFigma__get_document_info",
+      "mcp__ClaudeTalkToFigma__get_pages",
+      "mcp__ClaudeTalkToFigma__get_node_info"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "ClaudeTalkToFigma"
+  ]
+}
