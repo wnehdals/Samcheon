@@ -15,8 +15,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowFlags(Qt.FramelessWindowHint)
-        self.setMinimumSize(1653, 700)
-        self.resize(1700, 820)
+        self.setMinimumSize(1330, 700)
+        self.resize(1330, 820)
         self._settings_win = None
         self._build()
 
@@ -46,7 +46,17 @@ class MainWindow(QMainWindow):
         self._stack.addWidget(self.history_tab)
         root.addWidget(self._stack)
 
+        self.group_creation_tab.save_completed.connect(self._go_to_message_tab)
+
+    def _go_to_message_tab(self, template=None):
+        """루프 없이 스택·탭바를 메시지 전송 탭으로 전환"""
+        self._stack.setCurrentIndex(1)
+        self.tab_bar.set_active_tab(1)
+
     def _switch_tab(self, idx: int):
+        if idx == 1 and self._stack.currentIndex() == 0:
+            self.group_creation_tab._on_save_clicked()
+            return
         self._stack.setCurrentIndex(idx)
 
     def open_settings(self):

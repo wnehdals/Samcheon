@@ -2,7 +2,7 @@ import os
 
 import openpyxl
 from app.models.group_model import GroupModel
-from app.models.message_model import MessageModel
+from app.models.message_model import MessageModel, MessageTicket
 from app.views.tabs.group_creation_tab import GroupCreationTab
 
 
@@ -88,11 +88,11 @@ class GroupController:
 
     def _refresh_preview(self):
         """메시지와 파일을 교차 배치한 미리보기 항목 생성"""
-        msgs = self._message_model.messages
-        files = self._message_model.files
-        items = []
-        for i, msg in enumerate(msgs):
-            items.append(msg)
+        msgs = self._message_model.messages   # list[MessageTicket]
+        files = self._message_model.files      # list[str]
+        tickets = []
+        for i, ticket in enumerate(msgs):
+            tickets.append(ticket)
             if i < len(files):
-                items.append("[이미지 첨부]")
-        self._tab.preview_panel.set_preview(items)
+                tickets.append(MessageTicket(text="[이미지 첨부]", file_path=files[i]))
+        self._tab.preview_panel.set_preview(tickets)

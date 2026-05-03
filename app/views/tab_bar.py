@@ -57,3 +57,11 @@ class TabBar(QWidget):
         for i, btn in enumerate(self._buttons):
             btn.setStyleSheet(self._tab_style(i == idx))
         self.tab_changed.emit(idx)
+
+    def select_tab(self, idx: int):
+        self._on_click(idx)
+
+    def set_active_tab(self, idx: int):
+        """tab_changed 시그널 없이 스타일만 갱신"""
+        for i, btn in enumerate(self._buttons):
+            btn.setStyleSheet(self._tab_style(i == idx))

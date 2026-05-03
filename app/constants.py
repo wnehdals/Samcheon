@@ -20,6 +20,8 @@ C = {
     "hover":  "#262626",
 }
 
+SEARCH_ICON_SLEEP = 2
+
 CHANGELOG = """\
 [1.11.0]
 - 전송 중 창 최소화 기능 추가

@@ -1,4 +1,5 @@
 from PyQt5.QtCore import QObject, pyqtSignal
+from app.models.message_ticket import MessageTicket
 
 
 class MessageModel(QObject):
@@ -9,8 +10,8 @@ class MessageModel(QObject):
 
     def __init__(self):
         super().__init__()
-        self._messages: list = ["좋은 하루 보내세요", "오늘 와주셔서 감사합니다."]
-        self._files: list = ["이미지 첨부 파일.png", "동영상 첨부 파일.mp4"]
+        self._messages: list = []
+        self._files: list = []
         self._save_path: str = ""
 
     @property
@@ -27,7 +28,7 @@ class MessageModel(QObject):
 
     def add_message(self, text: str):
         if text:
-            self._messages.append(text)
+            self._messages.append(MessageTicket(text=text))
             self.messages_changed.emit(self.messages)
 
     def add_file(self, path: str):
